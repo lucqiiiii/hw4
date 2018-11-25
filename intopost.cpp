@@ -4,7 +4,7 @@
 
 using namespace std;
 
-string convert(char *infix, int length){
+/*string convert(char *infix, int length){
     stack<char> op;
     string postfix;
 
@@ -38,6 +38,7 @@ string convert(char *infix, int length){
             break;
         }
 */
+/*
         if(infix[i] == '('){
             continue;
         }
@@ -51,7 +52,7 @@ string convert(char *infix, int length){
     }
     return postfix;
 }
-
+*/
 
 int main(){
 
@@ -61,12 +62,13 @@ int main(){
     cin >> input;
 
     int len = input.length();
-    char *token[len+1];
-    strcpy(token,input.c_str());
+    char token[len+1] = input;
+    //strcpy(token,input.c_str());
 
-    string result;
-    
-    cout << convert(token,(len+1)) << endl;
+    cout << sizeof(token) << endl;
+    cout << strlen(token) <<endl;
+   
+    //cout << convert(token,(len+1)) << endl;
 
     return 0;
 }
