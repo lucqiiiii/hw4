@@ -22,7 +22,7 @@ template <class Item>
 Item stack<Item>::top() const
 {
   // check stack not empty
-  //assert(!empty());
+  assert(!empty());
   // return the top element
   return top_ptr->data();
 }

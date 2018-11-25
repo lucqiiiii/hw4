@@ -5,12 +5,13 @@
 #include <iostream>
 using namespace std;
 
-double evapostfix(char* expression,int numtokens){
+double evapostfix(char* expression[],int numtokens){
     stack<double> numbers;
     double left, right, result = 0;
+
     for(int i = 0; i < numtokens; i++){
         //Addition
-        if(strcmp(expression[i],"+") == 0){
+        if(*expression[i] == '+'){
         right = numbers.top();
         numbers.pop();
         left = numbers.top();
@@ -18,7 +19,7 @@ double evapostfix(char* expression,int numtokens){
         numbers.push(left + right);
         }
         //Subtraction
-        else if(strcmp(expression[i],"-") == 0){
+        else if(*expression[i] == '-'){
         right = numbers.top();
         numbers.pop();
         left = numbers.top();
@@ -26,7 +27,7 @@ double evapostfix(char* expression,int numtokens){
         numbers.push(left - right);
         }
         //Multiplication
-        else if(strcmp(expression[i],"*") == 0){
+        else if(*expression[i] == '*'){
         right = numbers.top();
         numbers.pop();
         left = numbers.top();
@@ -34,20 +35,22 @@ double evapostfix(char* expression,int numtokens){
         numbers.push(left * right);
         }
         //Division
-        else if(strcmp(expression[i],"/") == 0){
+        else if(*expression[i] == '/'){
         right = numbers.top();
         numbers.pop();
         left = numbers.top();
         numbers.pop();
         numbers.push(left / right);
-        }
+        }  
         //Numbers
         else{
+            cout << expression[i] << endl;
+            cout << typeid(expression[i]).name() << endl;
             numbers.push(atof(expression[i])); 
         }
     }
 
-    result =  numbers.top();
+    result = numbers.top();
     numbers.pop();
     return result;
 
@@ -56,38 +59,32 @@ double evapostfix(char* expression,int numtokens){
 #define MAXLEN 100
 
 int main(){
- //   do{
-        string answer;
-        char input[MAXLEN], tokens[MAXLEN/2];
-
+    char answer;             
+    char *tokens[MAXLEN/2]; 
+    do{
+        char input[MAXLEN];
         cout << "\nEnter an arithmetic expression in postfix notation\n"
         << "Make sure to separate each token with a space: ";
         cin.getline(input,MAXLEN);
 
-        //char *ptr = strtok(input," ");
+        cout << "checkpoint" << endl;
+        char *ptr = strtok(input," ");
 
         int count = 0;
-        int index = 0;
-        while(input[count] != '\0'){
-            if(input[count] != ' '){
-            tokens[index] = input[count];
+        while(ptr  != NULL){
+            tokens[count] = ptr;
             count++;
-            index++;
-            }
-            else{
-            count++;
-            }
-            //ptr = strtok(0," ");
+            ptr = strtok(NULL," ");
         }
 
-        double result = evapostfix(tokens,(index+1));
+        double result = evapostfix(tokens,count);
         cout << "Result: " << result << endl;
-     /*   cout << "Do you want to try another one?(y/n) ";
+        cout << "Do you want to try another one?(y/n) ";
         cin >> answer; 
-        if (answer == "n")
-            break;
-       */ 
-  //  }while(true);
+       // if (answer == "n")
+         //   break;
+        
+    }while(answer != 'n');
 
     return 0;
 }
