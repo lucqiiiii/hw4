@@ -2,10 +2,13 @@
 // Qi Guo, 11/15/2018
 
 #include "listQ.h"
+#include <cassert>
 
-Queue::Queue() {front = nullptr; rear = nullptr; size =0;}  
+template <class Item>
+Queue<Item>::Queue() {front = nullptr; rear = nullptr; size =0;}  
 
-Queue::~Queue() {
+template <class Item>
+Queue<Item>::~Queue() {
     while(front != nullptr){
         node *deletednode = front;
         //front -> data = NULL;
@@ -16,7 +19,8 @@ Queue::~Queue() {
     size = 0;
 }
 
-void Queue::enqueue(int n) {
+template <class Item>
+void Queue<Item>::enqueue(const Item& n) {
     node *newnode = new node(n);
     if(isEmpty()){
         front = newnode;
@@ -30,39 +34,33 @@ void Queue::enqueue(int n) {
     }
 }
 
-int Queue::dequeue() {
-    if (isEmpty())
-        throw EmptyQueue();
+template<class Item>
+void Queue<Item>::dequeue() {
     node *deletednode = front;
-    int value = front -> data;
+    Item value = front -> data;
     front -> data = 0;
     front = front -> next;
     delete deletednode;
     size--;
     if (isEmpty())
-        rear = nullptr;
-    return value; 
+        rear = nullptr; 
 }
 
-void Queue::clear() {
-     while(front != nullptr){
-        node *deletednode = front;
-        //front -> data = NULL;
-        front = front -> next; 
-        delete deletednode;
-        rear = nullptr;
-    }
-    size = 0;
-   
-}
-
-bool Queue::isEmpty() const {
+template<class Item>
+bool Queue<Item>::isEmpty() const {
     if(size == 0)
         return true; 
     else
         return false;
 }
 
-int Queue::getSize() const {
+template<class Item>
+int Queue<Item>::getSize() const {
     return size;
+}
+
+template<class Item>
+Item Queue <Item>::qfront() const{
+    assert(!isEmpty());
+    return front -> data;
 }

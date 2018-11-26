@@ -5,8 +5,13 @@ template <class Item>
 void queue<Item>::enq(const Item& entry)
 {
     // add node to the rear of the queue
-  list_insert(rear, entry);
-    
+  if(sizeq() == 0){
+      list_head_insert(front, entry);
+  }
+  else{
+      list_insert(rear, entry);
+  }
+  size++;
     
 }
 
@@ -18,6 +23,7 @@ void queue<Item>::deq()
  
   // remove node from the top of the queue
   list_head_remove(front);
+  size--;
 }
 
 template <class Item>

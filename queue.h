@@ -20,6 +20,7 @@ class queue{
   // observers: empty? and return top element
   bool empty() const {return (front==NULL);}
   Item qfront() const;
+  int sizeq() const {return size;}
 
  private:
   // pointer to a linked list representing a stack

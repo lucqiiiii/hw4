@@ -9,31 +9,34 @@
 class EmptyQueue { };
 class FullQueue { };
 
+template<class Item>
 class Queue {
 
 public:
     Queue();             // constructor creates empty queue
     ~Queue();            // destructor necessary to delete nodes
 
-    void enqueue(int n); // adds n to rear;
+    void enqueue(const Item& n); // adds n to rear;
         // does not get full, so no exception thrown
 
-    int dequeue();       // removes and returns front;
+    void dequeue();       // removes and returns front;
         // throws EmptyQueue if empty
 
     void clear();        // deletes all nodes
     bool isEmpty() const;
     bool isFull() const { return false; } // done
     int getSize() const; // returns number of items in the queue
+    Item qfront() const;
 
 private:
     struct node {
-        int data;
+        Item data;
         node *next;
-        node(int n) : data(n), next(0) {} // node constructor
+        node(Item n) : data(n), next(0) {} // node constructor
     };
     node *front, *rear;  // pointers to keep track of front and rear
     int size;            // number of items in the queue
 };
 
+#include "listQ.cpp"
 #endif

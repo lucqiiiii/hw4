@@ -56,10 +56,8 @@ double evapostfix(char* expression[],int numtokens){
 
 #define MAXLEN 100
 
-int main(){
-               
+int main(){               
     do{ 
-
         char answer;
         char *tokens[MAXLEN/2]; 
         char input[MAXLEN];
@@ -80,9 +78,10 @@ int main(){
         cout << "\nResult: " << result << endl;
  
         cout << "\nDo you want to try another one?(y/n) ";
+
         cin >> answer; 
         cin.ignore();
-        if (answer == 'n')
+        if (answer != 'y')
             break;
         
     }while(true);
