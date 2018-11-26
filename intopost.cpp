@@ -4,12 +4,12 @@
 
 using namespace std;
 
-/*string convert(char *infix, int length){
+string convert(char *infix, int length){
     stack<char> op;
     string postfix;
 
     for(int i = 0; i < length; i++){
-        /*if(strcmp(infix[i],"(" ) == 0){
+        if(strcmp(infix[i],"(" ) == 0){
             continue;
         }
         else if(strcmp(infix[i],"+" ) == 0){
@@ -37,8 +37,8 @@ using namespace std;
         else if(infix[i] == NULL){
             break;
         }
-*/
-/*
+
+
         if(infix[i] == '('){
             continue;
         }
@@ -52,7 +52,7 @@ using namespace std;
     }
     return postfix;
 }
-*/
+
 
 int main(){
 
