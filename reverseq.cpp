@@ -54,6 +54,13 @@ int main(){
     cout << "Type in the number of elements you want to reverse from the beginning\n"
     << "The order of the queue will reverse until then: ";
     cin >> k;
+    cin.ignore();
+
+    while(k > q.getSize()){
+        cout << "The elements you want to reverse exceed the size of the queue\nPlease enter a new number: ";
+        cin >>k;
+        cin.ignore();
+    }
 
     reverseq(q,k);
     
